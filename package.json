@@ -1,0 +1,11 @@
+{
+  "name": "Kelvin-bot",
+  "version": "1.0.0",
+  "description": "My own Discord bot",
+  "main": "bot.js",
+  "author": "Kelvin",
+  "dependencies": {
+    "discord.io": "github:woor/discord.io#gateway_v6",
+    "winston": "^2.4.2"
+  }
+}
