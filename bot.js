@@ -20,6 +20,12 @@ bot.on('ready', function (evt) {
   logger.info(bot.username + ' - (' + bot.id + ')');
 });
 
+let list = [
+  "!help: Gets this list",
+  "!ping: Bot replies Pong!",
+  "!d20: Bot rolls a d20 die"
+]
+
 
 bot.on('message', function (user, userID, channelID, message, evt) {
   if (message.substring(0, 1) == '!') {
@@ -40,6 +46,12 @@ bot.on('message', function (user, userID, channelID, message, evt) {
           to: channelID,
           message: a
         })
+        break;
+      case 'help':
+        bot.sendMessage({
+          to:channelID,
+          message: list.join("\n")
+        })        
         break;
     }
   }
