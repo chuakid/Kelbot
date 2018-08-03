@@ -3,9 +3,9 @@ const auth = require('./auth.json');
 const bot = new Discord.Client();
 
 bot.on('ready', function (evt) {
-  logger.info('Connected');
-  logger.info('Logged in as: ');
-  logger.info(bot.user);
+  console.log('Connected');
+  console.log('Logged in as: ');
+  console.log(bot.user.username);
 });
 
 let list = [
