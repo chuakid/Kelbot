@@ -1,15 +1,6 @@
-var Discord = require('discord.js');
-var logger = require('winston');
-var auth = require('./auth.json');
-
-logger.remove(logger.transports.Console);
-logger.add(logger.transports.Console, {
-  colorize: true
-});
-logger.level = 'debug';
-
+const Discord = require('discord.js');
+const auth = require('./auth.json');
 const bot = new Discord.Client();
-
 
 bot.on('ready', function (evt) {
   logger.info('Connected');
