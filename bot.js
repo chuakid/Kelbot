@@ -1,4 +1,4 @@
-var Discord = require('discord.io');
+var Discord = require('discord.js');
 var logger = require('winston');
 var auth = require('./auth.json');
 
@@ -8,16 +8,13 @@ logger.add(logger.transports.Console, {
 });
 logger.level = 'debug';
 
-var bot = new Discord.Client({
-  token: auth.token,
-  autorun: true
-});
+const bot = new Discord.Client();
 
 
 bot.on('ready', function (evt) {
   logger.info('Connected');
   logger.info('Logged in as: ');
-  logger.info(bot.username + ' - (' + bot.id + ')');
+  logger.info(bot.user);
 });
 
 let list = [
@@ -27,32 +24,31 @@ let list = [
 ]
 
 
-bot.on('message', function (user, userID, channelID, message, evt) {
-  if (message.substring(0, 1) == '!') {
-    var args = message.substring(1).split(' ');
+bot.on('message', (message) => {
+  if (message.content.substring(0, 1) == '!') {
+    var args = message.content.substring(1).split(' ');
     var command = args[0];
 
-    args = args.splice(1);
     switch (command) {
       case 'ping':
-        bot.sendMessage({
-          to: channelID,
-          message: 'Pong!'
-        });
+        message.channel.send('Pong!');
         break;
       case 'd20':
         let a = Math.floor(Math.random() * 19 + 1)
-        bot.sendMessage({
-          to: channelID,
-          message: a
-        })
+        message.channel.send("You rolled a " + a);
         break;
       case 'help':
-        bot.sendMessage({
-          to:channelID,
-          message: list.join("\n")
-        })        
+        message.channel.send(list.join("\n"));
+        break;
+      case 'bot':
+        if (args[1] == "shut" && args[2] == "down") {
+          message.channel.send("no", {
+            file: "./images/Detroit-Become-Human-Twitch.jpg"
+          })
+        }
         break;
     }
   }
 });
+
+bot.login(auth.token);
