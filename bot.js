@@ -25,7 +25,7 @@ bot.on('message', (message) => {
         message.channel.send('Pong!');
         break;
       case 'd20':
-        let a = Math.floor(Math.random() * 19 + 1)
+        let a = Math.floor(Math.random() * 19) + 1;
         message.channel.send("You rolled a " + a);
         break;
       case 'help':
