@@ -11,7 +11,9 @@ bot.on('ready', function (evt) {
 let list = [
   "!help: Gets this list",
   "!ping: Bot replies Pong!",
-  "!d20: Bot rolls a d20 die"
+  "!d20: Bot rolls a d20 die",
+  "!d6: Bot rolls a d6 die",
+  "!hi: Bot says hi",
 ]
 
 
@@ -25,11 +27,11 @@ bot.on('message', (message) => {
         message.channel.send('Pong!');
         break;
       case 'd20':
-        let a = Math.floor(Math.random() * 20) + 1;
+        var a = Math.floor(Math.random() * 20) + 1;
         message.channel.send("You rolled a " + a);
         break;
       case 'd6':
-        let a = Math.floor(Math.random() * 6) + 1;
+        var a = Math.floor(Math.random() * 6) + 1;
         message.channel.send("You rolled a " + a);
         break;
       case 'hi':
